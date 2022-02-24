@@ -84,9 +84,6 @@ void runDay(double& money, int& lemons, double& sugar, int temp, double rain, do
 		//Sales report           
 		system("cls");
 
-		cout << chance << endl;
-
-
 		//Display the day's weather
 		SetConsoleTextAttribute(hConsole, 0x0F);
 		cout << "\n\n  Today's Temperature: ";
