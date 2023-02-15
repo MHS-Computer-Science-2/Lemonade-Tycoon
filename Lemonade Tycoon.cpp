@@ -73,7 +73,7 @@ void runDay(double& money, int& lemons, double& sugar, int temp, double rain, do
 	for (int customer = 0; customer < 100; customer++) {
 		this_thread::sleep_for(chrono::milliseconds(25));
 		bool purchased = rand() % 100 < chance * 100;
-		if (purchased && lemons >= 1 && sugar >= .05) {
+		if (purchased && lemons >= 2 && sugar >= .05) {
 			lemons -= 2;
 			sugar -= .05;
 			totalCustomers++;
