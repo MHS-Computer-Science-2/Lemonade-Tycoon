@@ -17,7 +17,7 @@ void buyLemons(int lemons, double money, double price) {
 	//Display current lemon proce
 	cout << endl << "The price of lemons today is $" << price << endl;
 	//Ask user to enter how many they want
-	cout << "Each cup of lemonade requires 2 lemons. You will lose 10% of your unused lemon supply each day due to spoileage." << endl << endl;
+	cout << "Each cup of lemonade requires 2 lemons. You will lose 8% of your unused lemon supply each day due to spoileage." << endl << endl;
 	cout << "How many do you want to buy? ";
 	int number;
 	cin >> number;
@@ -35,15 +35,94 @@ void buyLemons(int lemons, double money, double price) {
 	}
 }
 
+void displayNewsHeadline(int event) {
+	// Display the funny headline only
+	SetConsoleTextAttribute(hConsole, 0x71);
+	cout << "\n========= BREAKING NEWS =========\n";
+	SetConsoleTextAttribute(hConsole, 0x1F);
+
+	switch (event) {
+	case 0:  cout << "Local man claims water is 'spicy lemonade.' Scientists concerned.\n"; break;
+	case 1:  cout << "EXTREME HEAT WARNING: Sidewalks melting. Pets wearing sunglasses.\n"; break;
+	case 2:  cout << "Citrus Blight Spreads! Lemons now considered a luxury item.\n"; break;
+	case 3:  cout << "Teen influencer declares lemonade 'basic.' Internet divided.\n"; break;
+	case 4:  cout << "National Lemon Glut! Farmers accidentally grew too many lemons.\n"; break;
+	case 5:  cout << "City Marathon Today. Thousands of exhausted runners incoming.\n"; break;
+	case 6:  cout << "Cold front arrives. People rediscover sweaters.\n"; break;
+	case 7:  cout << "Breaking: Study finds lemonade improves math test scores. Students skeptical.\n"; break;
+	case 8:  cout << "Sugar shipment delayed after driver stops for 'just one more donut.'\n"; break;
+	case 9:  cout << "Local dentist warns: 'Too much lemonade may cause smiling.'\n"; break;
+	case 10: cout << "Record-breaking sunshine declared 'aggressively cheerful.'\n"; break;
+	case 11: cout << "Mysterious lemon-themed flash mob scheduled downtown.\n"; break;
+	case 12: cout << "Health trend claims cold water is the new lemonade.\n"; break;
+	case 13: cout << "International Lemon Summit collapses. Tariffs on citrus incoming.\n"; break;
+	case 14: cout << "Underground lemon smuggling ring busted. Black market shaken.\n"; break;
+	case 15: cout << "Community picnic announced. Hydration strongly encouraged.\n"; break;
+	case 16: cout << "Clouds described as 'emotionally heavy.' Outdoor enthusiasm drops.\n"; break;
+	case 17: cout << "Local gym bans soda. Trainer recommends 'natural lemonade gains.'\n"; break;
+	case 18: cout << "Breaking: Lemon-scented candles recalled after attracting bees.\n"; break;
+	case 19: cout << "City council declares today 'Official Hydration Day.'\n"; break;
+	case 20: cout << "Arctic breeze sweeps through town. Popsicle sales unaffected.\n"; break;
+	case 21: cout << "Luxury chef features lemonade reduction sauce. Citrus demand spikes.\n"; break;
+	case 22: cout << "Cargo ship overcorrects. Accidentally delivers 40 tons of lemons.\n"; break;
+	case 23: cout << "Mild heatwave described as 'spicy but manageable.'\n"; break;
+	case 24: cout << "Viral video claims lemonade cures boredom. Internet fact-checkers exhausted.\n"; break;
+	case 25: cout << "Water park opens nearby. Thirst competition intensifies.\n"; break;
+	case 26: cout << "Town installs 47 new water fountains. Hydration now free.\n"; break;
+	default: cout << "Nothing happened. News anchors visibly disappointed.\n"; break;
+	}
+
+	cout << "==================================\n\n";
+}
+void applyNewsEffects(int event, double& lemonPrice, double& demandModifier) {
+	// Apply the effects to gameplay stats (price/demand)
+	switch (event) {
+	case 0:  demandModifier -= 0.10; break;
+	case 1:  demandModifier += 0.18; break;
+	case 2:  lemonPrice += 0.45; break;
+	case 3:  demandModifier -= 0.12; break;
+	case 4:  if (lemonPrice > 0.35) lemonPrice -= 0.30; break;
+	case 5:  demandModifier += 0.25; break;
+	case 6:  demandModifier -= 0.15; break;
+	case 7:  demandModifier += 0.14; break;
+	case 8:  demandModifier -= 0.08; break;
+	case 9:  demandModifier -= 0.05; break;
+	case 10: demandModifier += 0.12; break;
+	case 11: demandModifier += 0.20; break;
+	case 12: demandModifier -= 0.11; break;
+	case 13: lemonPrice += 0.35; break;
+	case 14: lemonPrice += 0.25; break;
+	case 15: demandModifier += 0.17; break;
+	case 16: demandModifier -= 0.13; break;
+	case 17: demandModifier += 0.16; break;
+	case 18: demandModifier -= 0.09; break;
+	case 19: demandModifier += 0.22; break;
+	case 20: demandModifier -= 0.18; break;
+	case 21: lemonPrice += 0.28; break;
+	case 22: if (lemonPrice > 0.40) lemonPrice -= 0.35; break;
+	case 23: demandModifier += 0.10; break;
+	case 24: demandModifier += 0.19; break;
+	case 25: demandModifier += 0.14; break;
+	case 26: demandModifier -= 0.20; break;
+	default: break;
+	}
+
+	// Clamp values for balance
+	if (lemonPrice < 0.10) lemonPrice = 0.10;
+	if (lemonPrice > 1.20) lemonPrice = 1.20;
+
+	if (demandModifier < -0.25) demandModifier = -0.25;
+	if (demandModifier > 0.25) demandModifier = 0.25;
+}
 void runDay(double& money, int& lemons, double& sugar, int temp, double rain, double price) {
 	system("cls");
-	srand(time(NULL)); //Prepares random numbers
+	srand(time(0)); //Prepares random numbers
 	day++;
 
 
 
 	//Compute probability that a customer will purchase
-	double chance = .2; //initial chance
+	double chance = .25; //initial chance
 
 	//Factor temp
 	int actualTemp = temp;
@@ -59,21 +138,30 @@ void runDay(double& money, int& lemons, double& sugar, int temp, double rain, do
 	//Factor rain
 	bool raining = rand() % 10 < rain * 10;
 	if (raining) {
-		chance -= .15;
+		chance -= .12;
 	}
 
 	//Factor price
-	chance += (1.75 - price) * .20;
+	double priceFactor = 1.0 - (price - 1.75) * .25;
+	if (priceFactor > 1.25) priceFactor = 1.25;  // small bonus for cheap pricing
+	if (priceFactor < 0.0)  priceFactor = 0.0;
+	chance = chance * priceFactor;
+
+
+	//Final demand clamp
+	if (priceFactor <= 0) chance = 0; //prevent high pricing exploit
+	else if (chance < 0.05) chance = 0.05;
+	else if (chance > 0.85) chance = 0.85;
 
 	//Simulate
 	int totalCustomers = 0;
 	double sales = 0.0;
 	int hour = 9;
 
-	for (int customer = 0; customer < 100; customer++) {
+	for (int customer = 0; customer < 120; customer++) {
 		this_thread::sleep_for(chrono::milliseconds(25));
 		bool purchased = rand() % 100 < chance * 100;
-		if (purchased && lemons >= 2 && sugar >= .05) {
+		if (purchased && lemons >= 1 && sugar >= .05) {
 			lemons -= 2;
 			sugar -= .05;
 			totalCustomers++;
@@ -83,6 +171,9 @@ void runDay(double& money, int& lemons, double& sugar, int temp, double rain, do
 
 		//Sales report           
 		system("cls");
+
+		// cout << chance << endl;
+
 
 		//Display the day's weather
 		SetConsoleTextAttribute(hConsole, 0x0F);
@@ -161,7 +252,7 @@ void runDay(double& money, int& lemons, double& sugar, int temp, double rain, do
 
 	if (lemons > 2) {
 		//Spoileage
-		int loss = ceil(lemons * .1);
+		int loss = ceil(lemons * .08);
 		SetConsoleTextAttribute(hConsole, 0x16);
 		cout << endl << loss << " lemon(s) lost due to spoileage." << endl;
 		lemons -= loss;
@@ -184,34 +275,48 @@ int main()
 	double pricePerCup = 1.75;							//What we charge per cup of lemonade
 	double lemonPrice = .75;							//Initial price of one lemon
 	bool gameOver = false;
+	double demandModifier = 0.0;
+	int eventType = rand() % 35;
 
 	//SHOW THE TITLE SCREEN
-	SetConsoleTextAttribute(hConsole, 0x16);
-	cout << "************************************************\n";
-	cout << "*             LEMONADE TYCOON 1.0              *\n";
-	cout << "************************************************\n\n";
+	SetConsoleTextAttribute(hConsole, 0xE0);
+	cout << "==============================================================\n";
+	cout << "                  L E M O N A D E   T Y C O O N               \n";
+	cout << "==============================================================\n";
+	cout << "                   A Retro Business Simulation                \n";
+	cout << "==============================================================\n\n";
+
 	SetConsoleTextAttribute(hConsole, 0x1F);
-	cout << "The object of this game is to make as much money as possible." << endl;
-	cout << "Before each day begins you may:" << endl;
-	SetConsoleTextAttribute(hConsole, 0x16);
-	cout << "  -> View the weather forcast" << endl;
-	cout << "  -> Change the price of a cup" << endl;
-	cout << "  -> Purchase ingredients" << endl;
+	cout << "Welcome, Entrepreneur.\n\n";
+	cout << "You have 14 days to build your lemonade empire.\n";
+	cout << "Buy ingredients. Set prices. Outsmart the market.\n\n";
+
+	cout << "Before each day you may:\n\n";
+
+	SetConsoleTextAttribute(hConsole, 0x12);
+	cout << "   1) View the weather forecast\n";
+	cout << "   2) Check the news\n";
+	cout << "   3) Change the price per cup\n";
+	cout << "   4) Purchase ingredients\n";
+
 	SetConsoleTextAttribute(hConsole, 0x1F);
-	cout << "\nSeveral factors will impact sales including:" << endl;
+	cout << "\nSales depend on:\n\n";
+
 	SetConsoleTextAttribute(hConsole, 0x16);
-	cout << "  -> The weather" << endl;
-	cout << "  -> The price of a cup" << endl;
-	cout << "  -> Having enough ingredients to meet the demand" << endl << endl;
+	cout << "   - Weather\n";
+	cout << "   - News Events\n";
+	cout << "   - Your Pricing Strategy\n";
+	cout << "   - Inventory Management\n\n";
+
 	SetConsoleTextAttribute(hConsole, 0x1F);
 	system("pause");
 	system("cls");
 	//END TITLE SCREEN
-	
+
 
 	string menuChoice = "";
 
-	while (menuChoice != "6" && !gameOver) {
+	while (menuChoice != "7" && !gameOver) {
 		//DISPLAY CURRENT STATS
 		SetConsoleTextAttribute(hConsole, 0x0F);
 		cout << endl << "     CURRENT CASH: ";
@@ -235,11 +340,12 @@ int main()
 		cout << "--------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 0x1F);
 		cout << "  1. See the weather forcast" << endl;
-		cout << "  2. Change pricing" << endl;
-		cout << "  3. Buy lemons" << endl;
-		cout << "  4. Buy sugar" << endl;
-		cout << "  5. Begin the day" << endl;
-		cout << "  6. Retire from the lemonade business" << endl << endl;
+		cout << "  2. Check the news" << endl;
+		cout << "  3. Change the lemonade price" << endl;
+		cout << "  4. Buy lemons" << endl;
+		cout << "  5. Buy sugar" << endl;
+		cout << "  6. Begin the day" << endl;
+		cout << "  7. Retire from the lemonade business" << endl << endl;
 		SetConsoleTextAttribute(hConsole, 0x1A);
 		cout << "Enter an option: ";
 		cin >> menuChoice;
@@ -257,6 +363,9 @@ int main()
 			SetConsoleTextAttribute(hConsole, 0x1F);
 		}
 		else if (menuChoice == "2") {
+			displayNewsHeadline(eventType);
+		}
+		else if (menuChoice == "3") {
 			//SET PRICE PER CUP
 			SetConsoleTextAttribute(hConsole, 0xF1);
 			cout << "The current price of a cup is: ";
@@ -268,24 +377,30 @@ int main()
 			cin >> pricePerCup;
 			SetConsoleTextAttribute(hConsole, 0x1F);
 		}
-		else if (menuChoice == "3") {
-			//BUY LEMONS
-			buyLemons(lemons, money, lemonPrice); 
-		}
 		else if (menuChoice == "4") {
-			//BUY SUGAR	
+			//BUY LEMONS
+			buyLemons(lemons, money, lemonPrice);
 		}
 		else if (menuChoice == "5") {
+			//BUY SUGAR	
+		}
+		else if (menuChoice == "6") {
 			//RUN THE NEXT DAY
 			runDay(money, lemons, sugarBags, predictedTemp, rainChance, pricePerCup);
-			
+
 			//Next day's weather
 			rainChance = rand() % 100 / 100.0;
 			predictedTemp = rand() % 40 + 60;
+
 			//Next day's lemon price
-			lemonPrice = (rand() % 75) / 100.0 + .25;
+			lemonPrice = (rand() % 61) / 100.0 + .30;
+
+			//Next day's news
+			demandModifier = 0;
+			eventType = rand() % 35;
+			applyNewsEffects(eventType, lemonPrice, demandModifier);
 		}
-		else if (menuChoice == "6") {
+		else if (menuChoice == "7") {
 			//RETIRE
 			break;
 		}
@@ -295,7 +410,7 @@ int main()
 			cout << "Invalid menu choice." << endl;
 		}
 
-	
+
 		//END OF GAME
 		if (day == 14) {
 			gameOver = true;
