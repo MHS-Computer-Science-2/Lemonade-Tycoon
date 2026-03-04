@@ -36,84 +36,77 @@ void buyLemons(int lemons, double money, double price) {
 }
 
 void displayNewsHeadline(int event) {
-	// Display the funny headline only
+
 	SetConsoleTextAttribute(hConsole, 0x71);
 	cout << "\n========= BREAKING NEWS =========\n";
 	SetConsoleTextAttribute(hConsole, 0x1F);
 
 	switch (event) {
 	case 0:  cout << "Local man claims water is 'spicy lemonade.' Scientists concerned.\n"; break;
-	case 1:  cout << "EXTREME HEAT WARNING: Sidewalks melting. Pets wearing sunglasses.\n"; break;
+	case 1:  cout << "City Marathon Today. Thousands of exhausted runners incoming.\n"; break;
 	case 2:  cout << "Citrus Blight Spreads! Lemons now considered a luxury item.\n"; break;
 	case 3:  cout << "Teen influencer declares lemonade 'basic.' Internet divided.\n"; break;
 	case 4:  cout << "National Lemon Glut! Farmers accidentally grew too many lemons.\n"; break;
-	case 5:  cout << "City Marathon Today. Thousands of exhausted runners incoming.\n"; break;
-	case 6:  cout << "Cold front arrives. People rediscover sweaters.\n"; break;
-	case 7:  cout << "Breaking: Study finds lemonade improves math test scores. Students skeptical.\n"; break;
-	case 8:  cout << "Sugar shipment delayed after driver stops for 'just one more donut.'\n"; break;
-	case 9:  cout << "Local dentist warns: 'Too much lemonade may cause smiling.'\n"; break;
-	case 10: cout << "Record-breaking sunshine declared 'aggressively cheerful.'\n"; break;
-	case 11: cout << "Mysterious lemon-themed flash mob scheduled downtown.\n"; break;
-	case 12: cout << "Health trend claims cold water is the new lemonade.\n"; break;
-	case 13: cout << "International Lemon Summit collapses. Tariffs on citrus incoming.\n"; break;
-	case 14: cout << "Underground lemon smuggling ring busted. Black market shaken.\n"; break;
-	case 15: cout << "Community picnic announced. Hydration strongly encouraged.\n"; break;
-	case 16: cout << "Clouds described as 'emotionally heavy.' Outdoor enthusiasm drops.\n"; break;
-	case 17: cout << "Local gym bans soda. Trainer recommends 'natural lemonade gains.'\n"; break;
-	case 18: cout << "Breaking: Lemon-scented candles recalled after attracting bees.\n"; break;
-	case 19: cout << "City council declares today 'Official Hydration Day.'\n"; break;
-	case 20: cout << "Arctic breeze sweeps through town. Popsicle sales unaffected.\n"; break;
-	case 21: cout << "Luxury chef features lemonade reduction sauce. Citrus demand spikes.\n"; break;
-	case 22: cout << "Cargo ship overcorrects. Accidentally delivers 40 tons of lemons.\n"; break;
-	case 23: cout << "Mild heatwave described as 'spicy but manageable.'\n"; break;
-	case 24: cout << "Viral video claims lemonade cures boredom. Internet fact-checkers exhausted.\n"; break;
-	case 25: cout << "Water park opens nearby. Thirst competition intensifies.\n"; break;
-	case 26: cout << "Town installs 47 new water fountains. Hydration now free.\n"; break;
+	case 5:  cout << "Breaking: Study finds lemonade improves math test scores.\n"; break;
+	case 6:  cout << "Sugar shipment delayed after driver stops for 'just one more donut.'\n"; break;
+	case 7:  cout << "Local dentist warns: 'Too much lemonade may cause smiling.'\n"; break;
+	case 8:  cout << "Mysterious lemon-themed flash mob scheduled downtown.\n"; break;
+	case 9:  cout << "Health trend claims cold water is the new lemonade.\n"; break;
+	case 10: cout << "International Lemon Summit collapses. Tariffs on citrus incoming.\n"; break;
+	case 11: cout << "Underground lemon smuggling ring busted. Black market shaken.\n"; break;
+	case 12: cout << "Community picnic announced. Hydration strongly encouraged.\n"; break;
+	case 13: cout << "Local gym bans soda. Trainer recommends 'natural lemonade gains.'\n"; break;
+	case 14: cout << "Breaking: Lemon-scented candles recalled after attracting bees.\n"; break;
+	case 15: cout << "City council declares today 'Official Hydration Day.'\n"; break;
+	case 16: cout << "Luxury chef features lemonade reduction sauce. Citrus demand spikes.\n"; break;
+	case 17: cout << "Cargo ship overcorrects. Accidentally delivers 40 tons of lemons.\n"; break;
+	case 18: cout << "Viral video claims lemonade cures boredom. Internet divided.\n"; break;
+	case 19: cout << "Town installs 47 new water fountains. Hydration now free.\n"; break;
+	case 20: cout << "Local celebrity spotted drinking lemonade downtown.\n"; break;
+	case 21: cout << "Economists warn of 'Citrus Bubble' forming in markets.\n"; break;
+	case 22: cout << "School fundraiser sells out of lemonade in record time.\n"; break;
+	case 23: cout << "New energy drink launches. Teen loyalty tested.\n"; break;
+	case 24: cout << "Farmers union announces temporary lemon export pause.\n"; break;
+	case 25: cout << "Neighborhood block party scheduled. Large crowds expected.\n"; break;
+	case 26: cout << "Investigative report questions 'artificial lemon flavor' industry.\n"; break;
 	default: cout << "Nothing happened. News anchors visibly disappointed.\n"; break;
 	}
 
 	cout << "==================================\n\n";
 }
+
 void applyNewsEffects(int event, double& lemonPrice, double& demandModifier) {
-	// Apply the effects to gameplay stats (price/demand)
 	switch (event) {
-	case 0:  demandModifier -= 0.10; break;
+	case 0:  demandModifier -= 0.08; break;
 	case 1:  demandModifier += 0.18; break;
-	case 2:  lemonPrice += 0.45; break;
-	case 3:  demandModifier -= 0.12; break;
-	case 4:  if (lemonPrice > 0.35) lemonPrice -= 0.30; break;
-	case 5:  demandModifier += 0.25; break;
-	case 6:  demandModifier -= 0.15; break;
-	case 7:  demandModifier += 0.14; break;
-	case 8:  demandModifier -= 0.08; break;
-	case 9:  demandModifier -= 0.05; break;
-	case 10: demandModifier += 0.12; break;
-	case 11: demandModifier += 0.20; break;
-	case 12: demandModifier -= 0.11; break;
-	case 13: lemonPrice += 0.35; break;
-	case 14: lemonPrice += 0.25; break;
-	case 15: demandModifier += 0.17; break;
-	case 16: demandModifier -= 0.13; break;
-	case 17: demandModifier += 0.16; break;
-	case 18: demandModifier -= 0.09; break;
-	case 19: demandModifier += 0.22; break;
-	case 20: demandModifier -= 0.18; break;
-	case 21: lemonPrice += 0.28; break;
-	case 22: if (lemonPrice > 0.40) lemonPrice -= 0.35; break;
-	case 23: demandModifier += 0.10; break;
-	case 24: demandModifier += 0.19; break;
-	case 25: demandModifier += 0.14; break;
-	case 26: demandModifier -= 0.20; break;
+	case 2:  lemonPrice += 0.35; break;
+	case 3:  demandModifier -= 0.10; break;
+	case 4:  if (lemonPrice > 0.35) lemonPrice -= 0.25; break;
+	case 5:  demandModifier += 0.12; break;
+	case 6:  demandModifier -= 0.07; break;
+	case 7:  demandModifier -= 0.05; break;
+	case 8:  demandModifier += 0.20; break;   // big hype day
+	case 9:  demandModifier -= 0.09; break;
+	case 10: lemonPrice += 0.30; break;
+	case 11: lemonPrice += 0.22; break;
+	case 12: demandModifier += 0.15; break;
+	case 13: demandModifier += 0.14; break;
+	case 14: demandModifier -= 0.08; break;
+	case 15: demandModifier += 0.18; break;
+	case 16: lemonPrice += 0.25; break;
+	case 17: if (lemonPrice > 0.40) lemonPrice -= 0.30; break;
+	case 18: demandModifier += 0.16; break;
+	case 19: demandModifier -= 0.18; break;
+	case 20: demandModifier += 0.14; break;
+	case 21: lemonPrice += 0.20; break;
+	case 22: demandModifier += 0.16; break;
+	case 23: demandModifier -= 0.12; break;
+	case 24: lemonPrice += 0.28; break;
+	case 25: demandModifier += 0.18; break;
+	case 26: demandModifier -= 0.10; break;
 	default: break;
-	}
-
-	// Clamp values for balance
-	if (lemonPrice < 0.10) lemonPrice = 0.10;
-	if (lemonPrice > 1.20) lemonPrice = 1.20;
-
-	if (demandModifier < -0.25) demandModifier = -0.25;
-	if (demandModifier > 0.25) demandModifier = 0.25;
 }
+
 void runDay(double& money, int& lemons, double& sugar, int temp, double rain, double price) {
 	system("cls");
 	srand(time(0)); //Prepares random numbers
@@ -432,3 +425,4 @@ int main()
 	}
 	system("pause");
 }
+
