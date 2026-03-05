@@ -261,7 +261,7 @@ int main()
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //Used for changing colors
 
 
-	double money = 10;									//Total money, starts at $50
+	double money = 10;									//Total money, starts at $10
 	int lemons = 30;									//Number of lemons
 	double sugarBags = 2;								//Number of bags of sugar
 	int predictedTemp = 70;								//Predicted temperature
@@ -426,5 +426,6 @@ int main()
 	}
 	system("pause");
 }
+
 
 
