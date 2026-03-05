@@ -105,6 +105,7 @@ void applyNewsEffects(int event, double& lemonPrice, double& demandModifier) {
 	case 25: demandModifier += 0.18; break;
 	case 26: demandModifier -= 0.10; break;
 	default: break;
+	}
 }
 
 void runDay(double& money, int& lemons, double& sugar, int temp, double rain, double price) {
@@ -425,4 +426,5 @@ int main()
 	}
 	system("pause");
 }
+
 
