@@ -108,7 +108,7 @@ void applyNewsEffects(int event, double& lemonPrice, double& demandModifier) {
 	}
 }
 
-void runDay(double& money, int& lemons, double& sugar, int temp, double rain, double price) {
+void runDay(double& money, int& lemons, double& sugar, int temp, double rain, double price, double demandModifier) {
 	system("cls");
 	srand(time(0)); //Prepares random numbers
 	day++;
@@ -141,6 +141,8 @@ void runDay(double& money, int& lemons, double& sugar, int temp, double rain, do
 	if (priceFactor < 0.0)  priceFactor = 0.0;
 	chance = chance * priceFactor;
 
+	//Factor news event
+	chance += demandModifier;
 
 	//Final demand clamp
 	if (priceFactor <= 0) chance = 0; //prevent high pricing exploit
@@ -391,7 +393,7 @@ int main()
 
 			//Next day's news
 			demandModifier = 0;
-			eventType = rand() % 35;
+			eventType = rand() % 27;
 			applyNewsEffects(eventType, lemonPrice, demandModifier);
 		}
 		else if (menuChoice == "7") {
@@ -426,6 +428,7 @@ int main()
 	}
 	system("pause");
 }
+
 
 
 
