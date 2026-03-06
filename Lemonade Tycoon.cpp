@@ -393,7 +393,7 @@ int main()
 
 			//Next day's news
 			demandModifier = 0;
-			eventType = rand() % 27;
+			eventType = rand() % 35;
 			applyNewsEffects(eventType, lemonPrice, demandModifier);
 		}
 		else if (menuChoice == "7") {
@@ -428,6 +428,7 @@ int main()
 	}
 	system("pause");
 }
+
 
 
 
